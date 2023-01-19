@@ -35,6 +35,7 @@ library:
   - NoImplicitPrelude
   - ScopedTypeVariables
   - InstanceSigs
+  - ImportQualifiedPost
 
   ghc-options:
   - -fwarn-incomplete-uni-patterns
