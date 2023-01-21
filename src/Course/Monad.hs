@@ -1,7 +1,7 @@
-{-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE RebindableSyntax #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE NoImplicitPrelude #-}
 
 module Course.Monad where
 
@@ -11,7 +11,7 @@ import Course.ExactlyOne
 import Course.Functor
 import Course.List
 import Course.Optional
-import qualified Prelude as P((=<<))
+import Prelude qualified as P ((=<<))
 
 -- | All instances of the `Monad` type-class must satisfy one law. This law
 -- is not checked by the compiler. This law is given as:
@@ -21,9 +21,9 @@ import qualified Prelude as P((=<<))
 class Applicative f => Monad f where
   -- Pronounced, bind.
   (=<<) ::
-    (a -> f b)
-    -> f a
-    -> f b
+    (a -> f b) ->
+    f a ->
+    f b
 
 infixr 1 =<<
 
@@ -33,9 +33,9 @@ infixr 1 =<<
 -- ExactlyOne 3
 instance Monad ExactlyOne where
   (=<<) ::
-    (a -> ExactlyOne b)
-    -> ExactlyOne a
-    -> ExactlyOne b
+    (a -> ExactlyOne b) ->
+    ExactlyOne a ->
+    ExactlyOne b
   (=<<) =
     error "todo: Course.Monad (=<<)#instance ExactlyOne"
 
@@ -45,9 +45,9 @@ instance Monad ExactlyOne where
 -- [1,1,2,2,3,3]
 instance Monad List where
   (=<<) ::
-    (a -> List b)
-    -> List a
-    -> List b
+    (a -> List b) ->
+    List a ->
+    List b
   (=<<) =
     error "todo: Course.Monad (=<<)#instance List"
 
@@ -57,9 +57,9 @@ instance Monad List where
 -- Full 14
 instance Monad Optional where
   (=<<) ::
-    (a -> Optional b)
-    -> Optional a
-    -> Optional b
+    (a -> Optional b) ->
+    Optional a ->
+    Optional b
   (=<<) =
     error "todo: Course.Monad (=<<)#instance Optional"
 
@@ -69,9 +69,9 @@ instance Monad Optional where
 -- 119
 instance Monad ((->) t) where
   (=<<) ::
-    (a -> ((->) t b))
-    -> ((->) t a)
-    -> ((->) t b)
+    (a -> ((->) t b)) ->
+    ((->) t a) ->
+    ((->) t b)
   (=<<) =
     error "todo: Course.Monad (=<<)#instance ((->) t)"
 
@@ -108,9 +108,9 @@ instance Monad ((->) t) where
 -- 15
 (<**>) ::
   Monad f =>
-  f (a -> b)
-  -> f a
-  -> f b
+  f (a -> b) ->
+  f a ->
+  f b
 (<**>) =
   error "todo: Course.Monad#(<**>)"
 
@@ -131,8 +131,8 @@ infixl 4 <**>
 -- 14
 join ::
   Monad f =>
-  f (f a)
-  -> f a
+  f (f a) ->
+  f a
 join =
   error "todo: Course.Monad#join"
 
@@ -144,9 +144,9 @@ join =
 -- 119
 (>>=) ::
   Monad f =>
-  f a
-  -> (a -> f b)
-  -> f b
+  f a ->
+  (a -> f b) ->
+  f b
 (>>=) =
   error "todo: Course.Monad#(>>=)"
 
@@ -159,10 +159,10 @@ infixl 1 >>=
 -- [2,2,3,3]
 (<=<) ::
   Monad f =>
-  (b -> f c)
-  -> (a -> f b)
-  -> a
-  -> f c
+  (b -> f c) ->
+  (a -> f b) ->
+  a ->
+  f c
 (<=<) =
   error "todo: Course.Monad#(<=<)"
 
