@@ -106,5 +106,3 @@ instance A.Applicative Optional where
 instance P.Monad Optional where
   (>>=) =
     flip bindOptional
-  return =
-    Full
