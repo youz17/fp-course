@@ -211,8 +211,7 @@ isHappy ::
   Integer ->
   Bool
 isHappy n =
-  firstRepeat (iter nextNumber n) == Full 1
+  firstRepeat (produce nextNumber n) == Full 1
   where
     nextNumber = P.sum . P.map (toInteger . square . digitToInt) . show
     square x = x * x
-    iter f x = x :. iter f (f x)
