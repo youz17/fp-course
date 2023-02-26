@@ -6,6 +6,7 @@
 
 module Course.StateT where
 
+import Control.Monad (when)
 import Course.Applicative
 import Course.Core
 import Course.ExactlyOne
@@ -248,10 +249,15 @@ instance Monad f => Applicative (OptionalT f) where
   (<*>) :: Monad f => OptionalT f (a -> b) -> OptionalT f a -> OptionalT f b
   (<*>) fopf fopa = OptionalT result
     where
+      isEmpty' Empty = True
+      isEmpty' _ = False
       result = do
         opf <- runOptionalT fopf
-        opa <- runOptionalT fopa
-        return $ opf <*> opa
+        if isEmpty' opf
+          then return Empty
+          else do
+            opa <- runOptionalT fopa
+            return $ opf <*> opa
 
 -- | Implement the `Monad` instance for `OptionalT f` given a Monad f.
 --
